@@ -1,4 +1,3 @@
-/* eslint-disable */
 declare global {
   var mongoose: {
     conn: any;
