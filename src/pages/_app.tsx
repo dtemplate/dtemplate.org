@@ -1,12 +1,12 @@
-import { CacheProvider } from "@emotion/react";
-import { AppProps } from "next/app";
-import { ThemeProvider } from "@mui/material/styles";
-import createCache, { EmotionCache } from "@emotion/cache";
-import theme from "../styles/theme";
-import { CssBaseline } from "@mui/material";
-import { SessionProvider } from "next-auth/react";
+import { CacheProvider } from '@emotion/react';
+import { AppProps } from 'next/app';
+import { ThemeProvider } from '@mui/material/styles';
+import createCache, { EmotionCache } from '@emotion/cache';
+import theme from '../styles/theme';
+import { CssBaseline } from '@mui/material';
+import { SessionProvider } from 'next-auth/react';
 
-const clientSideEmotionCache = createCache({ key: "css", prepend: true });
+const clientSideEmotionCache = createCache({ key: 'css', prepend: true });
 
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
