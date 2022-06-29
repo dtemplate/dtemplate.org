@@ -18,6 +18,7 @@ import Image from 'next/image';
 import DevTemplateIcon from '../../assets/images/icon.png';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
+import styles from './styles.module.css';
 
 interface IPage {
   name: string;
@@ -98,7 +99,7 @@ export default function Header() {
 
   return (
     <AppBar
-      color="default"
+      color="transparent"
       position="static"
       sx={{
         boxShadow: 'none',
@@ -108,7 +109,7 @@ export default function Header() {
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, alignItems: 'center' }}>
             <Link href="/">
-              <a>
+              <a className={styles.a}>
                 <Image
                   height={50}
                   width={50}
@@ -127,7 +128,7 @@ export default function Header() {
               </Tooltip>
             ) : (
               <Link href="/api/auth/signin">
-                <a>
+                <a className={styles.a}>
                   <Button
                     variant="contained"
                     onClick={handleCloseNavMenu}
@@ -171,7 +172,7 @@ export default function Header() {
               {pages.map(page => (
                 <MenuItem onClick={handleCloseNavMenu} key={page.name}>
                   <Link href={page.href}>
-                    <a>
+                    <a className={styles.a}>
                       <Typography textAlign="center">{page.name}</Typography>
                     </a>
                   </Link>
@@ -184,7 +185,7 @@ export default function Header() {
           >
             {pages.map(page => (
               <Link key={page.name} href={page.href}>
-                <a>
+                <a className={styles.a}>
                   <Button
                     variant={page.buttonVariant}
                     color="primary"
@@ -198,6 +199,7 @@ export default function Header() {
             ))}
             <IconButton sx={{ p: 0 }}>
               <a
+                className={styles.a}
                 href="https://github.com/dtemplate"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -214,7 +216,7 @@ export default function Header() {
               </Tooltip>
             ) : (
               <Link href="/api/auth/signin">
-                <a>
+                <a className={styles.a}>
                   <Button
                     variant="contained"
                     onClick={handleCloseNavMenu}
@@ -246,7 +248,7 @@ export default function Header() {
           {settings.map(setting => (
             <MenuItem key={setting.name} onClick={handleCloseUserMenu}>
               <Link href={setting.href}>
-                <a>
+                <a className={styles.a}>
                   <Typography textAlign="center">{setting.name}</Typography>
                 </a>
               </Link>

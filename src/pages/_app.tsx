@@ -24,6 +24,7 @@ export default function App(props: MyAppProps) {
           <CssBaseline />
           <Header />
           <Container
+            maxWidth="lg"
             style={{
               marginTop: '50px',
             }}

@@ -3,7 +3,7 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     background: {
-      default: '#eeeeee',
+      default: '#ffffff',
     },
     primary: {
       main: '#24292f',
@@ -21,6 +21,31 @@ const theme = createTheme({
       primary: '#212121',
       secondary: '#757575',
       disabled: '#bdbdbd',
+    },
+  },
+  typography: {
+    fontFamily: "'Poppins', sans-serif",
+    h1: {
+      fontSize: '2rem',
+    },
+    h2: {
+      fontSize: '1.5rem',
+    },
+    h3: {
+      fontSize: '1.25rem',
+    },
+    h4: {
+      fontSize: '1rem',
+    },
+    h5: {
+      fontSize: '0.875rem',
+    },
+    h6: {
+      fontSize: '0.75rem',
+    },
+    subtitle1: {
+      color: '#757575',
+      fontSize: '0.875rem',
     },
   },
 });

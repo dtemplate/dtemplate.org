@@ -13,7 +13,15 @@ export default function NotFoundPage() {
         style={{ minHeight: '100%' }}
       >
         <Grid item xs={3}>
-          <Typography variant="h1">404</Typography>
+          <Typography
+            sx={{
+              fontSize: '5rem',
+            }}
+            textAlign="center"
+            variant="h1"
+          >
+            404
+          </Typography>
           <Typography textAlign="center">Page Not Found</Typography>
         </Grid>
       </Grid>
