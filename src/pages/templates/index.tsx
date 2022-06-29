@@ -1,11 +1,11 @@
-import { Typography } from '@mui/material';
 import React from 'react';
+import { Typography } from '@mui/material';
 
-export default function createTemplate() {
+export default function TemplatesPage() {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Create a new template
+        Templates
       </Typography>
     </React.Fragment>
   );

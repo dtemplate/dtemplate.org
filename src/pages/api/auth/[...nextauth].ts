@@ -7,7 +7,8 @@ export default NextAuth({
   adapter: MongoDBAdapter(clientPromise),
   secret: process.env.NEXT_AUTH_SECRET,
   callbacks: {
-    async session({ session }) {
+    async session({ session, user }) {
+      session.user = user;
       return session;
     },
   },
