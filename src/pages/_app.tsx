@@ -3,8 +3,10 @@ import { AppProps } from 'next/app';
 import { ThemeProvider } from '@mui/material/styles';
 import createCache, { EmotionCache } from '@emotion/cache';
 import theme from '../styles/theme';
-import { CssBaseline } from '@mui/material';
+import { Container, CssBaseline } from '@mui/material';
 import { SessionProvider } from 'next-auth/react';
+import Header from '../components/Header/index';
+import '../styles/global.css';
 
 const clientSideEmotionCache = createCache({ key: 'css', prepend: true });
 
@@ -20,7 +22,14 @@ export default function App(props: MyAppProps) {
       <CacheProvider value={emotionCache}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Component {...pageProps} />
+          <Header />
+          <Container
+            style={{
+              marginTop: '50px',
+            }}
+          >
+            <Component {...pageProps} />
+          </Container>
         </ThemeProvider>
       </CacheProvider>
     </SessionProvider>

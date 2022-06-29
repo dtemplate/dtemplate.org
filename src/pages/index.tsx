@@ -1,13 +1,10 @@
-import { Button, Container } from '@mui/material';
-import { useSession } from 'next-auth/react';
+import React from 'react';
+import { Button } from '@mui/material';
 
 export default function Home() {
-  const { data: session } = useSession();
-  console.log(session);
-
   return (
-    <Container>
+    <React.Fragment>
       <Button variant="contained">Button</Button>
-    </Container>
+    </React.Fragment>
   );
 }
