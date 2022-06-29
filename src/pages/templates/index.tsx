@@ -1,10 +1,14 @@
 import React from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import Link from 'next/link';
+import Head from 'next/head';
 
 export default function TemplatesPage() {
   return (
     <React.Fragment>
+      <Head>
+        <title>All templates | Dev Template</title>
+      </Head>
       <Box>
         <Typography variant="h1">Templates</Typography>
         <Typography variant="subtitle1">

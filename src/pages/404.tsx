@@ -1,9 +1,13 @@
 import { Grid, Typography } from '@mui/material';
+import Head from 'next/head';
 import React from 'react';
 
 export default function NotFoundPage() {
   return (
     <React.Fragment>
+      <Head>
+        <title>Ops this page does not exist | Dev Template</title>
+      </Head>
       <Grid
         container
         spacing={0}
