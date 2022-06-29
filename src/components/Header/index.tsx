@@ -129,8 +129,9 @@ export default function Header() {
               <Link href="/api/auth/signin">
                 <a>
                   <Button
+                    variant="contained"
                     onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: 'white', display: 'block' }}
+                    sx={{ my: 2, display: 'block' }}
                   >
                     Login
                   </Button>
@@ -215,8 +216,9 @@ export default function Header() {
               <Link href="/api/auth/signin">
                 <a>
                   <Button
+                    variant="contained"
                     onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: 'white', display: 'block' }}
+                    sx={{ my: 2, display: 'block' }}
                   >
                     Login
                   </Button>
