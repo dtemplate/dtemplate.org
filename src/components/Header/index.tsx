@@ -41,7 +41,6 @@ export default function Header() {
   const isCurrentPage = React.useCallback(
     (pageHref: string): boolean => {
       const { pathname } = router;
-      console.log(pathname);
       if (pathname === '/') {
         return false;
       }
