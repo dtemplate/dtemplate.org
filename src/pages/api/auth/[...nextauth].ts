@@ -1,37 +1,45 @@
 import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
-import { ObjectID } from 'mongodb';
 import NextAuth from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
 import clientPromise from '../../../../lib/mongodb';
-import { GetUserFromUserIdService } from '../../../services/github/GetUserFromUserIdService';
+import { ObjectId } from 'mongodb';
 
 export default NextAuth({
   adapter: MongoDBAdapter(clientPromise),
   secret: process.env.NEXT_AUTH_SECRET,
   callbacks: {
+    async signIn(params: any) {
+      const { profile } = params;
+      const mongoClient = await clientPromise;
+      const db = mongoClient.db();
+      const githubProfile = await db.collection('github_profiles').findOne({
+        email: profile.email,
+      });
+      if (!githubProfile) {
+        await db.collection('github_profiles').insertOne(params.profile);
+        return true;
+      }
+      await db
+        .collection('github_profiles')
+        .updateOne({ email: profile.email }, { $set: params.profile });
+      return true;
+    },
+    redirect() {
+      return '/';
+    },
     async session({ session, user }) {
       const mongoClient = await clientPromise;
       const db = mongoClient.db();
-      const userId = new ObjectID(user.id);
-      const account = await db.collection('accounts').findOne({
-        userId,
+      const githubProfile: any = await db
+        .collection('github_profiles')
+        .findOne({
+          email: user.email,
+        });
+      const account: any = await db.collection('accounts').findOne({
+        userId: new ObjectId(user.id),
       });
-
-      const getUserFromUserId = new GetUserFromUserIdService(
-        account?.access_token,
-      );
-
-      const githubUser = await getUserFromUserId.execute(
-        account?.providerAccountId || 0,
-      );
-
-      session.user = {
-        ...user,
-      };
-      session.githubUser = {
-        ...githubUser,
-        github_access_token: account?.access_token,
-      };
+      session.githubProfile = githubProfile;
+      session.account = account;
       return session;
     },
   },

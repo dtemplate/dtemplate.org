@@ -15,6 +15,7 @@
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.8.6",
     "@next-auth/mongodb-adapter": "^1.0.3",
+    "@octokit/core": "^3.6.0",
     "mongoose": "^6.4.1",
     "next": "latest",
     "next-auth": "^4.7.0",
