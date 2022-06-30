@@ -1,4 +1,4 @@
-import { Autocomplete, FormControl, TextField } from '@mui/material';
+import { Autocomplete, TextField } from '@mui/material';
 import { useSession } from 'next-auth/react';
 import React, { useCallback, useEffect } from 'react';
 import { IGitHubRepository } from '../../../interfaces/IGithub';
@@ -64,17 +64,15 @@ export function SearchForOwnRepositoriesOnGithub({
   }, [selectedGithubRepository, onSelectedGithubRepository]);
 
   return (
-    <FormControl fullWidth>
-      <Autocomplete
-        id="github-repository-autocomplete"
-        options={githubRepositoriesOption}
-        onSelect={event => {
-          handleSelectedGithubRepository((event.target as any).value);
-        }}
-        renderInput={params => (
-          <TextField {...params} label="Github repository" />
-        )}
-      />
-    </FormControl>
+    <Autocomplete
+      id="github-repository-autocomplete"
+      options={githubRepositoriesOption}
+      onSelect={event => {
+        handleSelectedGithubRepository((event.target as any).value);
+      }}
+      renderInput={params => (
+        <TextField {...params} label="Github repository" />
+      )}
+    />
   );
 }
