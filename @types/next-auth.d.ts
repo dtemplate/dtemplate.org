@@ -3,17 +3,14 @@ import 'next-auth';
 declare module 'next-auth' {
   interface Session {
     account: {
-      access_token: string;
-      expires_at: number;
-      provider: string;
-      providerAccountId: string;
-      refresh_token: string;
-      refresh_token_expires_in: number;
-      scope: string;
-      token_type: string;
-      type: string;
-      userId: string;
       _id: string;
+      provider: string;
+      type: string;
+      providerAccountId: string;
+      access_token: string;
+      token_type: string;
+      scope: string;
+      userId: string;
     };
     githubProfile: {
       avatar_url: string;
