@@ -1,4 +1,4 @@
-import { Autocomplete, TextField } from '@mui/material';
+import { Autocomplete, CircularProgress, TextField } from '@mui/material';
 import { useSession } from 'next-auth/react';
 import React, { useCallback, useEffect } from 'react';
 import { IGitHubRepository } from '../../../interfaces/IGithub';
@@ -8,10 +8,14 @@ interface props {
   onSelectedGithubRepository: (
     repository: IGitHubRepository | undefined,
   ) => void;
+  label: string;
+  description?: string;
 }
 
 export function SearchForOwnRepositoriesOnGithub({
   onSelectedGithubRepository,
+  label,
+  description,
 }: props) {
   const { data: session } = useSession();
   const [githubRepositories, setGithubRepositories] = React.useState<
@@ -21,6 +25,8 @@ export function SearchForOwnRepositoriesOnGithub({
     React.useState<string[]>([]);
   const [selectedGithubRepository, setSelectedGithubRepository] =
     React.useState<IGitHubRepository>();
+  const [open, setOpen] = React.useState(false);
+  const loading = open && githubRepositoriesOption.length === 0;
 
   const getGithubRepositories = useCallback(async () => {
     const accessToken = session?.account.access_token || '';
@@ -31,7 +37,7 @@ export function SearchForOwnRepositoriesOnGithub({
     if (repositories && repositories.length) {
       setGithubRepositories(repositories);
     }
-  }, [session]);
+  }, [session?.account.access_token]);
 
   const handleSelectedGithubRepository = useCallback(
     (repositoryFullName: string) => {
@@ -65,13 +71,35 @@ export function SearchForOwnRepositoriesOnGithub({
 
   return (
     <Autocomplete
-      id="github-repository-autocomplete"
+      open={open}
+      onOpen={() => {
+        setOpen(true);
+      }}
+      onClose={() => {
+        setOpen(false);
+      }}
       options={githubRepositoriesOption}
       onSelect={event => {
         handleSelectedGithubRepository((event.target as any).value);
       }}
+      loading={loading}
       renderInput={params => (
-        <TextField {...params} label="Github repository" />
+        <TextField
+          {...params}
+          helperText={description}
+          label={label}
+          InputProps={{
+            ...params.InputProps,
+            endAdornment: (
+              <React.Fragment>
+                {loading ? (
+                  <CircularProgress color="inherit" size={20} />
+                ) : null}
+                {params.InputProps.endAdornment}
+              </React.Fragment>
+            ),
+          }}
+        />
       )}
     />
   );

@@ -19,6 +19,7 @@
     "mongoose": "^6.4.1",
     "next": "latest",
     "next-auth": "^4.7.0",
+    "next-connect": "^0.12.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript-eslint": "^0.0.1-alpha.0"

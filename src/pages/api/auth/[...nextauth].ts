@@ -3,8 +3,9 @@ import NextAuth from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
 import clientPromise from '../../../../lib/mongodb';
 import { ObjectId } from 'mongodb';
+import type { NextAuthOptions } from 'next-auth';
 
-export default NextAuth({
+export const authOptions: NextAuthOptions = {
   adapter: MongoDBAdapter(clientPromise),
   secret: process.env.NEXT_AUTH_SECRET,
   callbacks: {
@@ -49,4 +50,6 @@ export default NextAuth({
       clientSecret: process.env.GITHUB_SECRET,
     }),
   ],
-});
+};
+
+export default NextAuth(authOptions);

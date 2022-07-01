@@ -1,9 +1,19 @@
-export interface ILicense {
+export interface IGithubLicense {
   key: string;
   name: string;
   spdx_id: string;
   url: string;
   node_id: string;
+}
+
+export interface IGithubRepoTree {
+  path: string;
+  mode: string;
+  type: string;
+  sha: string;
+  size: number;
+  url: string;
+  children: IGithubRepoTree[];
 }
 
 export interface IGitHubRepository {
@@ -75,7 +85,7 @@ export interface IGitHubRepository {
   archived: boolean;
   disabled: boolean;
   open_issues_count: number;
-  license: ILicense;
+  license: IGithubLicense;
   allow_forking: boolean;
   is_template: boolean;
   web_commit_signoff_required: boolean;

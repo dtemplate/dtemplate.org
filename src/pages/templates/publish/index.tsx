@@ -1,17 +1,60 @@
-import { Box, Typography } from '@mui/material';
+import { Alert, Box, Typography } from '@mui/material';
 import { useSession } from 'next-auth/react';
 import Head from 'next/head';
-import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 import { PublishTemplateForm } from '../../../components/PublishTemplateForm';
 
 export default function PublishTemplate() {
+  const [message, setMessage] = useState<
+    | {
+        type: 'success' | 'error';
+        text: string;
+      }
+    | undefined
+  >();
   const { status } = useSession();
+  const router = useRouter();
 
   useEffect(() => {
     if (status === 'unauthenticated') {
       window.location.href = '/api/auth/signin';
     }
   }, [status]);
+
+  const onSubmit = (data: any) => {
+    setMessage(undefined);
+    fetch('/api/templates/publish', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(async response => {
+        window.scrollTo(0, 0);
+        const data = await response.json();
+        if (response.status === 201) {
+          setMessage({
+            type: 'success',
+            text: 'Template published successfully',
+          });
+          router.push('/templates');
+        } else {
+          setMessage({
+            type: 'error',
+            text: data.error,
+          });
+        }
+      })
+      .catch((error: any) => {
+        window.scrollTo(0, 0);
+        setMessage({
+          type: 'error',
+          text: error.message,
+        });
+      });
+  };
 
   return (
     <React.Fragment>
@@ -30,9 +73,23 @@ export default function PublishTemplate() {
       <Box
         sx={{
           mt: 5,
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
         }}
       >
-        <PublishTemplateForm />
+        {message && (
+          <Box
+            sx={{
+              mb: 5,
+              width: '100%',
+            }}
+          >
+            <Alert severity={message.type}>{message.text}</Alert>
+          </Box>
+        )}
+        <PublishTemplateForm onSubmit={onSubmit} />
       </Box>
     </React.Fragment>
   );
