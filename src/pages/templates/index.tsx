@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import Link from 'next/link';
 import Head from 'next/head';
+import { ListAllTemplatesService } from '../../modules/templates/services/ListAllTemplatesService';
+import { ITemplate } from '../../interfaces/ITemplate';
 
-export default function TemplatesPage() {
+interface IProps {
+  templates: ITemplate[];
+}
+
+export default function TemplatesPage({ templates }: IProps) {
+  useEffect(() => {
+    console.log(templates);
+  }, [templates]);
+
   return (
     <React.Fragment>
       <Head>
@@ -34,4 +44,21 @@ export default function TemplatesPage() {
       </Box>
     </React.Fragment>
   );
+}
+
+export async function getStaticProps() {
+  const listAllTemplatesService = new ListAllTemplatesService();
+  const templates = await listAllTemplatesService.execute({
+    limit: 10000,
+    page: 0,
+    search: '',
+    order: 'createdAt',
+  });
+
+  return {
+    props: {
+      templates: JSON.parse(JSON.stringify(templates)),
+    },
+    revalidate: 10,
+  };
 }

@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { unstable_getServerSession } from 'next-auth';
 import { authOptions } from '../../pages/api/auth/[...nextauth]';
 import { CreateTemplateService } from './services/CreateTemplateService';
-import { ListAllTemplates } from './services/ListAllTemplates';
+import { ListAllTemplatesService } from './services/ListAllTemplatesService';
 
 export class TemplateController {
   public async publish(req: NextApiRequest, res: NextApiResponse) {
@@ -29,7 +29,7 @@ export class TemplateController {
   public async listAll(req: NextApiRequest, res: NextApiResponse) {
     try {
       const { page, limit, order, search } = req.query;
-      const listAllTemplates = new ListAllTemplates();
+      const listAllTemplates = new ListAllTemplatesService();
       const result = await listAllTemplates.execute({
         page: parseInt(page as string, 10),
         limit: parseInt(limit as string, 10),

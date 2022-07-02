@@ -7,7 +7,7 @@ interface IServiceData {
   search: string;
 }
 
-export class ListAllTemplates {
+export class ListAllTemplatesService {
   public async execute({ page, limit, order, search }: IServiceData) {
     const mongoClient = await clientPromise;
     const db = await mongoClient.db();
