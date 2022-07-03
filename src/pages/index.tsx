@@ -1,6 +1,7 @@
 import React from 'react';
-import { Button, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import Head from 'next/head';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -8,158 +9,34 @@ export default function Home() {
       <Head>
         <title>Build your entire project with one command | Dev Template</title>
       </Head>
-      <Button color="warning" variant="contained">
-        Button
-      </Button>
-      <Typography>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum
-        reiciendis veritatis repellat minus ullam dolores consequatur in,
-        dolorem et rerum, delectus illo quaerat obcaecati tempore ab facere?
-        Minima, rem cupiditate. Lorem ipsum dolor, sit amet consectetur
-        adipisicing elit. Harum reiciendis veritatis repellat minus ullam
-        dolores consequatur in, dolorem et rerum, delectus illo quaerat
-        obcaecati tempore ab facere? Minima, rem cupiditate. Lorem ipsum dolor,
-        sit amet consectetur adipisicing elit. Harum reiciendis veritatis
-        repellat minus ullam dolores consequatur in, dolorem et rerum, delectus
-        illo quaerat obcaecati tempore ab facere? Minima, rem cupiditate. Lorem
-        ipsum dolor, sit amet consectetur adipisicing elit. Harum reiciendis
-        veritatis repellat minus ullam dolores consequatur in, dolorem et rerum,
-        delectus illo quaerat obcaecati tempore ab facere? Minima, rem
-        cupiditate. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-        Harum reiciendis veritatis repellat minus ullam dolores consequatur in,
-        dolorem et rerum, delectus illo quaerat obcaecati tempore ab facere?
-        Minima, rem cupiditate. Lorem ipsum dolor, sit amet consectetur
-        adipisicing elit. Harum reiciendis veritatis repellat minus ullam
-        dolores consequatur in, dolorem et rerum, delectus illo quaerat
-        obcaecati tempore ab facere? Minima, rem cupiditate. Lorem ipsum dolor,
-        sit amet consectetur adipisicing elit. Harum reiciendis veritatis
-        repellat minus ullam dolores consequatur in, dolorem et rerum, delectus
-        illo quaerat obcaecati tempore ab facere? Minima, rem cupiditate. Lorem
-        ipsum dolor, sit amet consectetur adipisicing elit. Harum reiciendis
-        veritatis repellat minus ullam dolores consequatur in, dolorem et rerum,
-        delectus illo quaerat obcaecati tempore ab facere? Minima, rem
-        cupiditate. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-        Harum reiciendis veritatis repellat minus ullam dolores consequatur in,
-        dolorem et rerum, delectus illo quaerat obcaecati tempore ab facere?
-        Minima, rem cupiditate. Lorem ipsum dolor, sit amet consectetur
-        adipisicing elit. Harum reiciendis veritatis repellat minus ullam
-        dolores consequatur in, dolorem et rerum, delectus illo quaerat
-        obcaecati tempore ab facere? Minima, rem cupiditate. Lorem ipsum dolor,
-        sit amet consectetur adipisicing elit. Harum reiciendis veritatis
-        repellat minus ullam dolores consequatur in, dolorem et rerum, delectus
-        illo quaerat obcaecati tempore ab facere? Minima, rem cupiditate. Lorem
-        ipsum dolor, sit amet consectetur adipisicing elit. Harum reiciendis
-        veritatis repellat minus ullam dolores consequatur in, dolorem et rerum,
-        delectus illo quaerat obcaecati tempore ab facere? Minima, rem
-        cupiditate. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-        Harum reiciendis veritatis repellat minus ullam dolores consequatur in,
-        dolorem et rerum, delectus illo quaerat obcaecati tempore ab facere?
-        Minima, rem cupiditate. Lorem ipsum dolor, sit amet consectetur
-        adipisicing elit. Harum reiciendis veritatis repellat minus ullam
-        dolores consequatur in, dolorem et rerum, delectus illo quaerat
-        obcaecati tempore ab facere? Minima, rem cupiditate. Lorem ipsum dolor,
-        sit amet consectetur adipisicing elit. Harum reiciendis veritatis
-        repellat minus ullam dolores consequatur in, dolorem et rerum, delectus
-        illo quaerat obcaecati tempore ab facere? Minima, rem cupiditate. Lorem
-        ipsum dolor, sit amet consectetur adipisicing elit. Harum reiciendis
-        veritatis repellat minus ullam dolores consequatur in, dolorem et rerum,
-        delectus illo quaerat obcaecati tempore ab facere? Minima, rem
-        cupiditate. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-        Harum reiciendis veritatis repellat minus ullam dolores consequatur in,
-        dolorem et rerum, delectus illo quaerat obcaecati tempore ab facere?
-        Minima, rem cupiditate. Lorem ipsum dolor, sit amet consectetur
-        adipisicing elit. Harum reiciendis veritatis repellat minus ullam
-        dolores consequatur in, dolorem et rerum, delectus illo quaerat
-        obcaecati tempore ab facere? Minima, rem cupiditate. Lorem ipsum dolor,
-        sit amet consectetur adipisicing elit. Harum reiciendis veritatis
-        repellat minus ullam dolores consequatur in, dolorem et rerum, delectus
-        illo quaerat obcaecati tempore ab facere? Minima, rem cupiditate. Lorem
-        ipsum dolor, sit amet consectetur adipisicing elit. Harum reiciendis
-        veritatis repellat minus ullam dolores consequatur in, dolorem et rerum,
-        delectus illo quaerat obcaecati tempore ab facere? Minima, rem
-        cupiditate. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-        Harum reiciendis veritatis repellat minus ullam dolores consequatur in,
-        dolorem et rerum, delectus illo quaerat obcaecati tempore ab facere?
-        Minima, rem cupiditate. Lorem ipsum dolor, sit amet consectetur
-        adipisicing elit. Harum reiciendis veritatis repellat minus ullam
-        dolores consequatur in, dolorem et rerum, delectus illo quaerat
-        obcaecati tempore ab facere? Minima, rem cupiditate. Lorem ipsum dolor,
-        sit amet consectetur adipisicing elit. Harum reiciendis veritatis
-        repellat minus ullam dolores consequatur in, dolorem et rerum, delectus
-        illo quaerat obcaecati tempore ab facere? Minima, rem cupiditate. Lorem
-        ipsum dolor, sit amet consectetur adipisicing elit. Harum reiciendis
-        veritatis repellat minus ullam dolores consequatur in, dolorem et rerum,
-        delectus illo quaerat obcaecati tempore ab facere? Minima, rem
-        cupiditate. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-        Harum reiciendis veritatis repellat minus ullam dolores consequatur in,
-        dolorem et rerum, delectus illo quaerat obcaecati tempore ab facere?
-        Minima, rem cupiditate. Lorem ipsum dolor, sit amet consectetur
-        adipisicing elit. Harum reiciendis veritatis repellat minus ullam
-        dolores consequatur in, dolorem et rerum, delectus illo quaerat
-        obcaecati tempore ab facere? Minima, rem cupiditate. Lorem ipsum dolor,
-        sit amet consectetur adipisicing elit. Harum reiciendis veritatis
-        repellat minus ullam dolores consequatur in, dolorem et rerum, delectus
-        illo quaerat obcaecati tempore ab facere? Minima, rem cupiditate. Lorem
-        ipsum dolor, sit amet consectetur adipisicing elit. Harum reiciendis
-        veritatis repellat minus ullam dolores consequatur in, dolorem et rerum,
-        delectus illo quaerat obcaecati tempore ab facere? Minima, rem
-        cupiditate. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-        Harum reiciendis veritatis repellat minus ullam dolores consequatur in,
-        dolorem et rerum, delectus illo quaerat obcaecati tempore ab facere?
-        Minima, rem cupiditate. Lorem ipsum dolor, sit amet consectetur
-        adipisicing elit. Harum reiciendis veritatis repellat minus ullam
-        dolores consequatur in, dolorem et rerum, delectus illo quaerat
-        obcaecati tempore ab facere? Minima, rem cupiditate. Lorem ipsum dolor,
-        sit amet consectetur adipisicing elit. Harum reiciendis veritatis
-        repellat minus ullam dolores consequatur in, dolorem et rerum, delectus
-        illo quaerat obcaecati tempore ab facere? Minima, rem cupiditate. Lorem
-        ipsum dolor, sit amet consectetur adipisicing elit. Harum reiciendis
-        veritatis repellat minus ullam dolores consequatur in, dolorem et rerum,
-        delectus illo quaerat obcaecati tempore ab facere? Minima, rem
-        cupiditate. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-        Harum reiciendis veritatis repellat minus ullam dolores consequatur in,
-        dolorem et rerum, delectus illo quaerat obcaecati tempore ab facere?
-        Minima, rem cupiditate. Lorem ipsum dolor, sit amet consectetur
-        adipisicing elit. Harum reiciendis veritatis repellat minus ullam
-        dolores consequatur in, dolorem et rerum, delectus illo quaerat
-        obcaecati tempore ab facere? Minima, rem cupiditate. Lorem ipsum dolor,
-        sit amet consectetur adipisicing elit. Harum reiciendis veritatis
-        repellat minus ullam dolores consequatur in, dolorem et rerum, delectus
-        illo quaerat obcaecati tempore ab facere? Minima, rem cupiditate. Lorem
-        ipsum dolor, sit amet consectetur adipisicing elit. Harum reiciendis
-        veritatis repellat minus ullam dolores consequatur in, dolorem et rerum,
-        delectus illo quaerat obcaecati tempore ab facere? Minima, rem
-        cupiditate. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-        Harum reiciendis veritatis repellat minus ullam dolores consequatur in,
-        dolorem et rerum, delectus illo quaerat obcaecati tempore ab facere?
-        Minima, rem cupiditate. Lorem ipsum dolor, sit amet consectetur
-        adipisicing elit. Harum reiciendis veritatis repellat minus ullam
-        dolores consequatur in, dolorem et rerum, delectus illo quaerat
-        obcaecati tempore ab facere? Minima, rem cupiditate. Lorem ipsum dolor,
-        sit amet consectetur adipisicing elit. Harum reiciendis veritatis
-        repellat minus ullam dolores consequatur in, dolorem et rerum, delectus
-        illo quaerat obcaecati tempore ab facere? Minima, rem cupiditate. Lorem
-        ipsum dolor, sit amet consectetur adipisicing elit. Harum reiciendis
-        veritatis repellat minus ullam dolores consequatur in, dolorem et rerum,
-        delectus illo quaerat obcaecati tempore ab facere? Minima, rem
-        cupiditate. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-        Harum reiciendis veritatis repellat minus ullam dolores consequatur in,
-        dolorem et rerum, delectus illo quaerat obcaecati tempore ab facere?
-        Minima, rem cupiditate. Lorem ipsum dolor, sit amet consectetur
-        adipisicing elit. Harum reiciendis veritatis repellat minus ullam
-        dolores consequatur in, dolorem et rerum, delectus illo quaerat
-        obcaecati tempore ab facere? Minima, rem cupiditate. Lorem ipsum dolor,
-        sit amet consectetur adipisicing elit. Harum reiciendis veritatis
-        repellat minus ullam dolores consequatur in, dolorem et rerum, delectus
-        illo quaerat obcaecati tempore ab facere? Minima, rem cupiditate. Lorem
-        ipsum dolor, sit amet consectetur adipisicing elit. Harum reiciendis
-        veritatis repellat minus ullam dolores consequatur in, dolorem et rerum,
-        delectus illo quaerat obcaecati tempore ab facere? Minima, rem
-        cupiditate. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-        Harum reiciendis veritatis repellat minus ullam dolores consequatur in,
-        dolorem et rerum, delectus illo quaerat obcaecati tempore ab facere?
-        Minima, rem cupiditate.
-      </Typography>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: 'calc(100vh - 120px)',
+          gap: '20px',
+        }}
+      >
+        <Typography
+          variant="h1"
+          sx={{
+            fontSize: '2rem',
+            fontWeight: 'normal',
+          }}
+        >
+          Dev Template
+        </Typography>
+        <Typography variant="h2">
+          Build your entire project with one command
+        </Typography>
+        <Link href="/templates">
+          <a>
+            <Button variant="outlined">Explore Templates</Button>
+          </a>
+        </Link>
+      </Box>
     </React.Fragment>
   );
 }
