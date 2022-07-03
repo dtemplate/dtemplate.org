@@ -139,14 +139,14 @@ export async function getStaticPaths() {
   }[] = [];
 
   const listAllTemplatesService = new ListAllTemplatesService();
-  const templates = await listAllTemplatesService.execute({
+  const { templates } = await listAllTemplatesService.execute({
     limit: 10000,
     page: 0,
     search: '',
     order: 'createdAt',
   });
 
-  templates.forEach(template => {
+  templates.forEach((template: any) => {
     paths.push({
       params: {
         templateName: template.templateConfiguration.name,

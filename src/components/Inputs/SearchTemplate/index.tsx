@@ -1,17 +1,17 @@
 import { IconButton, TextField } from '@mui/material';
 import React, { useCallback } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
-import { ITemplate } from '../../../interfaces/ITemplate';
+import { IPagination } from '../../../interfaces/IPagination';
 
 interface IProps {
-  onChangeFoundTemplates: (templates: ITemplate[]) => void;
+  onChangeFoundTemplates: (result: IPagination) => void;
 }
 
 export function SearchTemplate({ onChangeFoundTemplates }: IProps) {
   const handleSearch = useCallback(
     async (term: string) => {
       const response = await fetch(
-        '/api/templates?page=0&limit=10&order=createdAt&search=' + term,
+        '/api/templates?page=1&limit=10&order=createdAt&search=' + term,
       );
       const { result: templates } = await response.json();
       onChangeFoundTemplates(templates);

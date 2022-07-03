@@ -1,28 +1,62 @@
-import React, { useEffect } from 'react';
-import { Box, Button, Typography } from '@mui/material';
+import React, { useCallback, useEffect } from 'react';
+import { Box, Button, CircularProgress, Typography } from '@mui/material';
 import Link from 'next/link';
 import Head from 'next/head';
 import { ListAllTemplatesService } from '../../modules/templates/services/ListAllTemplatesService';
 import { ITemplate } from '../../interfaces/ITemplate';
 import { TemplateCard } from '../../components/TemplateCard';
 import { SearchTemplate } from '../../components/Inputs/SearchTemplate';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { IPagination } from '../../interfaces/IPagination';
 
 interface IProps {
-  templates: ITemplate[];
+  result: IPagination;
 }
 
-export default function TemplatesPage({ templates }: IProps) {
+export default function TemplatesPage({ result }: IProps) {
   const [allFilteredTemplates, setAllFilteredTemplates] = React.useState<
     ITemplate[]
   >([]);
+  const [total, setTotal] = React.useState(0);
+  const [page, setPage] = React.useState(0);
+  const [limit, setLimit] = React.useState(0);
+  const [search, setSearch] = React.useState('');
+  const [order, setOrder] = React.useState('');
 
   useEffect(() => {
-    setAllFilteredTemplates(templates);
-  }, [templates]);
+    setAllFilteredTemplates(result.templates);
+    handleSetPaginationParams(result);
+  }, [result]);
 
-  const handleOnChangeFoundTemplates = (templates: ITemplate[]) => {
-    setAllFilteredTemplates(templates);
+  const handleOnChangeFoundTemplates = (searchResult: IPagination) => {
+    setAllFilteredTemplates(searchResult.templates);
+    handleSetPaginationParams(searchResult);
   };
+
+  const handleAddTemplates = useCallback((addResult: IPagination) => {
+    setAllFilteredTemplates(old => [...old, ...addResult.templates]);
+    handleSetPaginationParams(addResult);
+  }, []);
+
+  const handleSetPaginationParams = (paginationParams: IPagination) => {
+    setTotal(paginationParams.total);
+    setPage(paginationParams.page);
+    setLimit(paginationParams.limit);
+    setSearch(paginationParams.search);
+    setOrder(paginationParams.order);
+  };
+
+  const handleGetNextPage = useCallback(async () => {
+    const nextPage = page + 1;
+    const nextLimit = limit;
+    if (nextPage <= total) {
+      const response = await fetch(
+        `/api/templates?page=${nextPage}&limit=${nextLimit}&order=${order}&search=${search}`,
+      );
+      const { result } = await response.json();
+      handleAddTemplates(result);
+    }
+  }, [page, total, limit, handleAddTemplates, search, order]);
 
   return (
     <React.Fragment>
@@ -55,40 +89,68 @@ export default function TemplatesPage({ templates }: IProps) {
       <Box>
         <SearchTemplate onChangeFoundTemplates={handleOnChangeFoundTemplates} />
       </Box>
-      <Box>
-        {allFilteredTemplates.length ? (
-          <>
-            {allFilteredTemplates.map(template => (
-              <Box
-                sx={{
-                  mt: 3,
-                }}
-                key={template._id}
-              >
-                <TemplateCard template={template} />
-              </Box>
-            ))}
-          </>
-        ) : (
-          <Typography variant="h2">No templates found</Typography>
-        )}
-      </Box>
+      <InfiniteScroll
+        dataLength={allFilteredTemplates.length}
+        next={handleGetNextPage}
+        hasMore={page * limit < total}
+        loader={
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: '100px',
+            }}
+          >
+            <CircularProgress color="inherit" size={20} />
+          </Box>
+        }
+        endMessage={
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: '100px',
+            }}
+          >
+            <Typography variant="h4" align="center">
+              You have seen all templates
+            </Typography>
+          </Box>
+        }
+      >
+        <Box>
+          {allFilteredTemplates.map(template => (
+            <Box
+              sx={{
+                mt: 3,
+              }}
+              key={template._id}
+            >
+              <TemplateCard template={template} />
+            </Box>
+          ))}
+        </Box>
+      </InfiniteScroll>
     </React.Fragment>
   );
 }
 
 export async function getStaticProps() {
+  const LIMIT = 100;
+
   const listAllTemplatesService = new ListAllTemplatesService();
-  const templates = await listAllTemplatesService.execute({
-    limit: 10000,
-    page: 0,
+  const result = await listAllTemplatesService.execute({
+    limit: LIMIT,
+    page: 1,
     search: '',
     order: 'createdAt',
   });
 
   return {
     props: {
-      templates: JSON.parse(JSON.stringify(templates)),
+      result,
     },
     revalidate: 10,
   };

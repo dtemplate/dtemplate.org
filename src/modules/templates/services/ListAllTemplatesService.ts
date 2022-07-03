@@ -25,10 +25,29 @@ export class ListAllTemplatesService {
         ],
       })
       .sort({ createdAt: order === 'asc' ? 1 : -1 })
-      .skip(page * limit)
+      .skip((page - 1) * limit)
       .limit(limit)
       .toArray();
 
-    return templates;
+    const total = await db.collection('templates').countDocuments({
+      $or: [
+        { 'templateConfiguration.name': { $regex: search, $options: 'i' } },
+        {
+          'templateConfiguration.description': {
+            $regex: search,
+            $options: 'i',
+          },
+        },
+      ],
+    });
+
+    return {
+      templates: JSON.parse(JSON.stringify(templates)),
+      limit,
+      page,
+      total,
+      search,
+      order,
+    };
   }
 }
