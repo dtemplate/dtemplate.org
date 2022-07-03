@@ -1,6 +1,6 @@
-import { ListAllTemplatesService } from '../../../modules/templates/services/ListAllTemplatesService';
-import { ITemplate } from '../../../interfaces/ITemplate';
-import { GetTemplateByNameService } from '../../../modules/templates/services/GetTemplateByNameService';
+import { ListAllTemplatesService } from '../../modules/templates/services/ListAllTemplatesService';
+import { ITemplate } from '../../interfaces/ITemplate';
+import { GetTemplateByNameService } from '../../modules/templates/services/GetTemplateByNameService';
 import React from 'react';
 import Head from 'next/head';
 import { Box, Card, CardContent, Typography } from '@mui/material';
