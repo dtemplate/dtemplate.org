@@ -4,14 +4,19 @@ import Link from 'next/link';
 import Head from 'next/head';
 import { ListAllTemplatesService } from '../../modules/templates/services/ListAllTemplatesService';
 import { ITemplate } from '../../interfaces/ITemplate';
+import { TemplateCard } from '../../components/TemplateCard';
 
 interface IProps {
   templates: ITemplate[];
 }
 
 export default function TemplatesPage({ templates }: IProps) {
+  const [allFilteredTemplates, setAllFilteredTemplates] = React.useState<
+    ITemplate[]
+  >([]);
+
   useEffect(() => {
-    console.log(templates);
+    setAllFilteredTemplates(templates);
   }, [templates]);
 
   return (
@@ -41,6 +46,18 @@ export default function TemplatesPage({ templates }: IProps) {
             <Button variant="outlined">Publish a template</Button>
           </a>
         </Link>
+      </Box>
+      <Box>
+        {allFilteredTemplates.map(template => (
+          <Box
+            sx={{
+              mt: 3,
+            }}
+            key={template._id}
+          >
+            <TemplateCard template={template} />
+          </Box>
+        ))}
       </Box>
     </React.Fragment>
   );
