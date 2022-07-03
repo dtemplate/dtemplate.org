@@ -9,7 +9,6 @@ interface IProps {
 }
 
 export function TemplateCard({ template }: IProps) {
-  console.log(template);
   return (
     <React.Fragment>
       <Card variant="outlined">

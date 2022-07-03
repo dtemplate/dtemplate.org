@@ -5,6 +5,7 @@ import Head from 'next/head';
 import { ListAllTemplatesService } from '../../modules/templates/services/ListAllTemplatesService';
 import { ITemplate } from '../../interfaces/ITemplate';
 import { TemplateCard } from '../../components/TemplateCard';
+import { SearchTemplate } from '../../components/Inputs/SearchTemplate';
 
 interface IProps {
   templates: ITemplate[];
@@ -18,6 +19,10 @@ export default function TemplatesPage({ templates }: IProps) {
   useEffect(() => {
     setAllFilteredTemplates(templates);
   }, [templates]);
+
+  const handleOnChangeFoundTemplates = (templates: ITemplate[]) => {
+    setAllFilteredTemplates(templates);
+  };
 
   return (
     <React.Fragment>
@@ -38,7 +43,7 @@ export default function TemplatesPage({ templates }: IProps) {
       </Box>
       <Box
         sx={{
-          mt: 3,
+          my: 3,
         }}
       >
         <Link href="/templates/publish">
@@ -48,16 +53,25 @@ export default function TemplatesPage({ templates }: IProps) {
         </Link>
       </Box>
       <Box>
-        {allFilteredTemplates.map(template => (
-          <Box
-            sx={{
-              mt: 3,
-            }}
-            key={template._id}
-          >
-            <TemplateCard template={template} />
-          </Box>
-        ))}
+        <SearchTemplate onChangeFoundTemplates={handleOnChangeFoundTemplates} />
+      </Box>
+      <Box>
+        {allFilteredTemplates.length ? (
+          <>
+            {allFilteredTemplates.map(template => (
+              <Box
+                sx={{
+                  mt: 3,
+                }}
+                key={template._id}
+              >
+                <TemplateCard template={template} />
+              </Box>
+            ))}
+          </>
+        ) : (
+          <Typography variant="h2">No templates found</Typography>
+        )}
       </Box>
     </React.Fragment>
   );
