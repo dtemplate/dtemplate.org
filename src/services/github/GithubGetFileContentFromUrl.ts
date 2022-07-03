@@ -1,5 +1,9 @@
 import { Octokit } from '@octokit/core';
 
+interface IOptions {
+  convertToJSON: boolean;
+}
+
 export class GithubGetFileContentFromUrl {
   octokit: any;
 
@@ -13,14 +17,11 @@ export class GithubGetFileContentFromUrl {
     });
   }
 
-  async execute(
-    url: string,
-    {
-      convertToJSON,
-    }: {
-      convertToJSON: boolean;
-    },
-  ): Promise<string | any> {
+  async execute(url: string, options?: IOptions): Promise<string | any> {
+    let convertToJSON = false;
+    if (options) {
+      convertToJSON = options.convertToJSON;
+    }
     const response = await this.octokit.request(
       'GET /repos/:owner/:repo/git/blobs/:sha',
       {

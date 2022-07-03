@@ -6,8 +6,8 @@ const nextConfig = {
     styledComponents: true,
   },
   env: {
-    GITHUB_ID: process.env.GITHUB_ID,
-    GITHUB_SECRET: process.env.GITHUB_SECRET,
+    GITHUB_MAIN_ACCOUNT_ACCESS_TOKEN:
+      process.env.GITHUB_MAIN_ACCOUNT_ACCESS_TOKEN,
   },
 };
 
