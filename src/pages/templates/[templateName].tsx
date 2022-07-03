@@ -3,15 +3,27 @@ import { ITemplate } from '../../interfaces/ITemplate';
 import { GetTemplateByNameService } from '../../modules/templates/services/GetTemplateByNameService';
 import React from 'react';
 import Head from 'next/head';
-import { Box, Card, CardContent, Typography } from '@mui/material';
-import { CopyBlock, dracula } from 'react-code-blocks';
-import ReactMarkdown from 'react-markdown';
+import {
+  Box,
+  Card,
+  CardContent,
+  Typography,
+  CardHeader,
+  Divider,
+} from '@mui/material';
+import { Markdown } from '../../components/Markdown';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 
 interface IProps {
   template: ITemplate | any;
 }
 
 export default function templatePage({ template }: IProps) {
+  const commandToUseString =
+    '\n ```console\ndt new -t ' +
+    template.templateConfiguration.name +
+    '\n```\n';
+
   return (
     <React.Fragment>
       <Head>
@@ -19,62 +31,87 @@ export default function templatePage({ template }: IProps) {
           Template {template.templateConfiguration.name} | Dev Template
         </title>
       </Head>
+      <Box
+        sx={{
+          display: 'flex',
+          width: '100%',
+          flexDirection: {
+            xs: 'column',
+            md: 'row',
+          },
+        }}
+      >
+        <Box
+          sx={{
+            maxWidth: '700px',
+          }}
+        >
+          <Typography
+            variant="h1"
+            sx={{
+              fontSize: '1.5rem',
+            }}
+          >
+            Template: {template.templateConfiguration.name}
+          </Typography>
+          <Typography variant="subtitle1">
+            {template.templateConfiguration.description}
+          </Typography>
+        </Box>
+        <Box
+          sx={{
+            minWidth: '400px',
+            width: { xs: '100%', md: '400px' },
+            mt: { xs: 2, md: 0 },
+            ml: { xs: 0, md: 'auto' },
+          }}
+        >
+          <Markdown>{commandToUseString}</Markdown>
+          <Box
+            sx={{
+              px: 2,
+              color: 'text.secondary',
+            }}
+          >
+            <Typography variant="caption">
+              Enter your project folder and type the above command to use the
+              template
+            </Typography>
+          </Box>
+        </Box>
+      </Box>
       <Box>
-        <Typography variant="h1">
-          Template: {template.templateConfiguration.name}
-        </Typography>
-        <Typography variant="subtitle1">
-          {template.templateConfiguration.description}
-        </Typography>
-      </Box>
-      <Box
-        sx={{
-          mt: 3,
-        }}
-      >
-        <CopyBlock
-          text={`dt new -t ${template.templateConfiguration.name}`}
-          language="shell"
-          theme={dracula}
-          codeBlock
-          showLineNumbers={false}
-        />
-      </Box>
-      <Box
-        sx={{
-          mt: 3,
-        }}
-      >
-        <Typography variant="h2">Readme:</Typography>
         <Card
           sx={{
             mt: 2,
-            p: 1,
           }}
         >
+          <CardHeader
+            component={() => (
+              <Box>
+                <Box
+                  sx={{
+                    p: 2,
+                    display: 'flex',
+                    color: 'text.secondary',
+                    gap: 1,
+                  }}
+                >
+                  <MenuBookIcon />
+                  <a
+                    href={`https://github.com/${template.githubRepository.full_name}/blob/${template.githubRepository.default_branch}/README.md`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Typography>README.md</Typography>
+                  </a>
+                </Box>
+                <Divider />
+              </Box>
+            )}
+          />
           <CardContent>
-            <ReactMarkdown
-              components={{
-                h1: (props: any) => <Typography variant="h1" {...props} />,
-                h2: (props: any) => <Typography variant="h2" {...props} />,
-                h3: (props: any) => <Typography variant="h3" {...props} />,
-                h4: (props: any) => <Typography variant="h4" {...props} />,
-                h5: (props: any) => <Typography variant="h5" {...props} />,
-                h6: (props: any) => <Typography variant="h6" {...props} />,
-                p: (props: any) => <Typography variant="body1" {...props} />,
-                code: (props: any) => (
-                  <CopyBlock
-                    text={props.children}
-                    language="shell"
-                    theme={dracula}
-                    codeBlock
-                    showLineNumbers={false}
-                  />
-                ),
-              }}
-            >
-              {template.readme}
-            </ReactMarkdown>
+            <Markdown>{template.readme}</Markdown>
           </CardContent>
         </Card>
       </Box>
