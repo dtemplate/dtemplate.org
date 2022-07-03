@@ -25,7 +25,7 @@ export class ListAllTemplatesService {
         ],
       })
       .sort({ createdAt: order === 'asc' ? 1 : -1 })
-      .skip((page - 1) * limit)
+      .skip((page - 1 < 0 ? 0 : page - 1) * limit)
       .limit(limit)
       .toArray();
 
