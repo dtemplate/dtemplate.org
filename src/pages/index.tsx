@@ -21,6 +21,7 @@ export default function Home() {
       >
         <Typography
           variant="h1"
+          textAlign="center"
           sx={{
             fontSize: '2rem',
             fontWeight: 'normal',
@@ -28,7 +29,7 @@ export default function Home() {
         >
           Dev Template
         </Typography>
-        <Typography variant="h2">
+        <Typography variant="h2" textAlign="center">
           Build your entire project with one command
         </Typography>
         <Link href="/templates">
