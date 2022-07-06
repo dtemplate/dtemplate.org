@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { unstable_getServerSession } from 'next-auth';
 import { authOptions } from '../../pages/api/auth/[...nextauth]';
 import { CreateTemplateService } from './services/CreateTemplateService';
+import { GetTemplateByNameService } from './services/GetTemplateByNameService';
 import { ListAllTemplatesService } from './services/ListAllTemplatesService';
 
 export class TemplateController {
@@ -38,6 +39,29 @@ export class TemplateController {
       });
 
       res.status(200).json({
+        result,
+      });
+    } catch (error: any) {
+      res.status(500).json({
+        error: error.message,
+      });
+    }
+  }
+
+  public async getTemplateByName(req: NextApiRequest, res: NextApiResponse) {
+    try {
+      const { templateName } = req.query;
+      if (!templateName) {
+        return res.status(400).json({
+          error: 'Missing templateName',
+        });
+      }
+      const getTemplateByNameService = new GetTemplateByNameService();
+      const result = await getTemplateByNameService.execute(
+        templateName as string,
+      );
+
+      return res.status(200).json({
         result,
       });
     } catch (error: any) {
