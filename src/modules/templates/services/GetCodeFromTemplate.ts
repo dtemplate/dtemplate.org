@@ -88,6 +88,8 @@ export class GetCodeFromTemplate {
         resultFiles.push({
           name: item.path,
           children: content,
+          content: '',
+          type: item.type,
         });
         continue;
       }
@@ -101,6 +103,8 @@ export class GetCodeFromTemplate {
       resultFiles.push({
         name: item.path,
         content,
+        children: [],
+        type: item.type,
       });
     }
 
