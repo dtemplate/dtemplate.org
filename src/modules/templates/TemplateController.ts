@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { unstable_getServerSession } from 'next-auth';
 import { authOptions } from '../../pages/api/auth/[...nextauth]';
 import { CreateTemplateService } from './services/CreateTemplateService';
+import { GetCodeFromTemplate } from './services/GetCodeFromTemplate';
 import { GetTemplateByNameService } from './services/GetTemplateByNameService';
 import { ListAllTemplatesService } from './services/ListAllTemplatesService';
 
@@ -66,6 +67,27 @@ export class TemplateController {
       });
     } catch (error: any) {
       res.status(500).json({
+        error: error.message,
+      });
+    }
+  }
+
+  public async getCodeTemplateByName(
+    req: NextApiRequest,
+    res: NextApiResponse,
+  ) {
+    try {
+      const { templateName, base } = req.query;
+      const getCodeFromTemplate = new GetCodeFromTemplate();
+      const result = await getCodeFromTemplate.execute(templateName as string, {
+        getFromBaseStructure: !!base,
+      });
+
+      res.status(200).json({
+        result,
+      });
+    } catch (error: any) {
+      return res.status(500).json({
         error: error.message,
       });
     }
