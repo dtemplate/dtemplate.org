@@ -75,6 +75,11 @@ export default function Header() {
   React.useEffect(() => {
     let ALL_PAGES: IPage[] = [
       {
+        name: 'Installation',
+        href: '/docs/cli/install',
+        buttonVariant: 'text',
+      },
+      {
         name: 'Documentation',
         href: '/docs',
         buttonVariant: 'text',
