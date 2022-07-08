@@ -2,6 +2,7 @@ import { Octokit } from '@octokit/core';
 
 interface IOptions {
   convertToJSON: boolean;
+  noConvertoToUtf8?: boolean;
 }
 
 export class GithubGetFileContentFromUrl {
@@ -30,6 +31,11 @@ export class GithubGetFileContentFromUrl {
         sha: url.split('/')[8],
       },
     );
+
+    if (options && options.noConvertoToUtf8) {
+      return response.data.content;
+    }
+
     const fileUtf8Content = Buffer.from(
       response.data.content,
       'base64',

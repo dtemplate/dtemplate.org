@@ -99,6 +99,7 @@ export class GetCodeFromTemplate {
       );
       const content = await githubGetFileContentFromUrl.execute(item.url, {
         convertToJSON: false,
+        noConvertoToUtf8: true,
       });
       resultFiles.push({
         name: item.path,
