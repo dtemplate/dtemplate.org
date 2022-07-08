@@ -103,7 +103,7 @@ export class GetCodeFromTemplate {
       });
       resultFiles.push({
         name: item.path,
-        content,
+        content: content.replace(/\n/g, ''),
         children: [],
         type: item.type,
       });
