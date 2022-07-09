@@ -32,9 +32,14 @@ export default function Home() {
         <Typography variant="h2" textAlign="center">
           Build your entire project with one command
         </Typography>
+        <Link href="/docs/cli/install">
+          <a>
+            <Button variant="outlined">Install The CLI</Button>
+          </a>
+        </Link>
         <Link href="/templates">
           <a>
-            <Button variant="outlined">Explore Templates</Button>
+            <Button variant="text">Explore Templates</Button>
           </a>
         </Link>
       </Box>

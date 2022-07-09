@@ -28,7 +28,11 @@ export default function DocsPage() {
       <Head>
         <title>All documentation | Dev Template</title>
       </Head>
-      <Box>
+      <Box
+        sx={{
+          mb: 4,
+        }}
+      >
         <Markdown>{markdownDocs}</Markdown>
       </Box>
     </React.Fragment>

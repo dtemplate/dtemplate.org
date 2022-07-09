@@ -44,6 +44,7 @@ export default function Header() {
       if (pathname === '/') {
         return false;
       }
+
       return pathname.startsWith(pageHref);
     },
     [router],
@@ -73,15 +74,28 @@ export default function Header() {
   };
 
   React.useEffect(() => {
+    const { pathname, query } = router;
+
+    let pathnameAndQueries = pathname.replace(
+      pathname.substring(pathname.indexOf('['), pathname.indexOf(']') + 1),
+      '',
+    );
+
+    for (const key of Object.keys(query)) {
+      if (query[key] && (query[key] as any).join) {
+        pathnameAndQueries += (query[key] as any).join('/');
+      }
+    }
+
     let ALL_PAGES: IPage[] = [
-      {
-        name: 'Installation',
-        href: '/docs/cli/install',
-        buttonVariant: 'text',
-      },
       {
         name: 'Documentation',
         href: '/docs',
+        buttonVariant: 'text',
+      },
+      {
+        name: 'Installation',
+        href: '/docs/cli/install',
         buttonVariant: 'text',
       },
       {
@@ -92,9 +106,23 @@ export default function Header() {
     ];
 
     ALL_PAGES = ALL_PAGES.map(page => {
+      let buttonVariant = 'text';
+
+      if (isCurrentPage(page.href)) {
+        buttonVariant = 'outlined';
+      }
+
+      if (ALL_PAGES.find(page => page.href === pathnameAndQueries)) {
+        if (page.href === pathnameAndQueries) {
+          buttonVariant = 'outlined';
+        } else {
+          buttonVariant = 'text';
+        }
+      }
+
       return {
         ...page,
-        buttonVariant: isCurrentPage(page.href) ? 'outlined' : 'text',
+        buttonVariant: buttonVariant as 'text' | 'outlined',
       };
     });
 

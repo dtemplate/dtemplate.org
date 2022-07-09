@@ -22,7 +22,11 @@ export default function DocsFile({ markdownDocs, docsName }: IProps) {
       <Head>
         <title>{docsName} documentation | Dev Template</title>
       </Head>
-      <Box>
+      <Box
+        sx={{
+          mb: 4,
+        }}
+      >
         <Markdown>{markdownDocs}</Markdown>
       </Box>
     </React.Fragment>
