@@ -20,7 +20,7 @@ export class GetCodeFromTemplate {
       .updateOne(
         { 'templateConfiguration.name': templateName },
         { $inc: { downloadCount: 1 } },
-        { upsert: true },
+        { upsert: false },
       );
 
     if (!options?.getFromBaseStructure) {
