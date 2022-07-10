@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: http://dtemplate.org
+
+# Sitemaps
+Sitemap: http://dtemplate.org/sitemap.xml

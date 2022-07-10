@@ -1,9 +1,13 @@
 {
   "private": true,
   "name": "dtemplate.org",
+  "engines": {
+    "node": "16.13.0"
+  },
   "scripts": {
     "dev": "docker-compose up -d && next",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint"
   },
@@ -29,6 +33,7 @@
     "next": "latest",
     "next-auth": "^4.7.0",
     "next-connect": "^0.12.2",
+    "next-sitemap": "^3.1.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-infinite-scroll-component": "^6.1.0",
