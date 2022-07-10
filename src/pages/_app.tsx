@@ -7,6 +7,10 @@ import { Container, CssBaseline } from '@mui/material';
 import { SessionProvider } from 'next-auth/react';
 import Header from '../components/Header/index';
 import '../styles/global.css';
+import { useRouter } from 'next/router';
+import * as gtag from '../../lib/gtag';
+import { useEffect } from 'react';
+import { Analytics } from '../components/Analytics';
 
 const clientSideEmotionCache = createCache({ key: 'css', prepend: true });
 
@@ -15,7 +19,18 @@ interface MyAppProps extends AppProps {
 }
 
 export default function App(props: MyAppProps) {
+  const router = useRouter();
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      gtag.pageview(url);
+    };
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
 
   return (
     <SessionProvider>
@@ -30,6 +45,7 @@ export default function App(props: MyAppProps) {
             }}
           >
             <Component {...pageProps} />
+            <Analytics />
           </Container>
         </ThemeProvider>
       </CacheProvider>
