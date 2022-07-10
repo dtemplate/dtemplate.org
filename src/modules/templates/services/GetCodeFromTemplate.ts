@@ -12,6 +12,17 @@ interface IOptions {
 
 export class GetCodeFromTemplate {
   public async execute(templateName: string, options?: IOptions) {
+    const mongoClient = await clientPromise;
+    const db = await mongoClient.db();
+
+    await db
+      .collection('templates')
+      .updateOne(
+        { 'templateConfiguration.name': templateName },
+        { $inc: { downloadCount: 1 } },
+        { upsert: true },
+      );
+
     if (!options?.getFromBaseStructure) {
       return await this.executeFromAll(templateName);
     }

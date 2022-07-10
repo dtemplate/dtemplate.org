@@ -14,6 +14,7 @@ export interface ITemplateGithubRepository {
 
 export interface ITemplate {
   _id: string;
+  downloadCount?: number;
   githubRepository: ITemplateGithubRepository;
   templateConfiguration: ITemplateConfig;
   baseTemplateRepositoryTreeUrl: string;

@@ -54,6 +54,10 @@ export default function templatePage({ template }: IProps) {
           >
             Template: {template.templateConfiguration.name}
           </Typography>
+          <Typography variant="caption">
+            {template.downloadCount || 0} download
+            {(template.downloadCount || 0) > 1 ? 's' : ''}
+          </Typography>
           <Typography variant="subtitle1">
             {template.templateConfiguration.description}
           </Typography>
