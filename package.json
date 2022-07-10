@@ -1,9 +1,6 @@
 {
   "private": true,
   "name": "dtemplate.org",
-  "engines": {
-    "node": "16.15.0"
-  },
   "scripts": {
     "dev": "docker-compose up -d && next",
     "build": "next build",
