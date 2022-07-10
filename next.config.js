@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
+  images: {
+    domains: ['ik.imagekit.io'],
+  },
   staticPageGenerationTimeout: 60 * 60, // 1 hour
   reactStrictMode: true,
   compiler: {
