@@ -1,6 +1,9 @@
 {
   "private": true,
   "name": "dtemplate.org",
+  "engines": {
+    "node": "14.19.3"
+  },
   "scripts": {
     "dev": "docker-compose up -d && next",
     "build": "echo \"node version:\" && node -v && next build",
