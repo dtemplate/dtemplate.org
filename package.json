@@ -3,7 +3,7 @@
   "name": "dtemplate.org",
   "scripts": {
     "dev": "docker-compose up -d && next",
-    "build": "next build",
+    "build": "echo \"node version:\" && node -v && next build",
     "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint"
